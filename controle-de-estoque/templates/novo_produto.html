@@ -1,0 +1,50 @@
+{% extends "template.html" %}
+{% block title %}Novo Produto{% endblock %}
+{% block h1 %}Criar um novo produto{% endblock %}
+{% block conteudo%}
+<div class="container" style="border-style: solid; border-color: #dee2e6; margin-top: -0.3%; padding-top: 1%; padding-bottom: 1%;">
+
+    <form name="form" action="{{ url_for('criar_produto') }}" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="tipo">Selecione o tipo:</label>
+            <select name="tipo" id="tipo">
+            <option value="1">Fruta</option>
+            <option value="2">Legume</option>
+            <option value="3">Hortaliça</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="nome">Nome do Produto</label>
+            <input type="text" required class="form-control" name="nome" id="nome">
+        </div>
+        <div class="form-group">
+            <label for="descricao">Descrição do produto</label>
+            <input type="text" required class="form-control" name="descricao" id="descricao">
+        </div>
+        <div class="form-group">
+            <label for="valor_compra">Valor de compra do Produto</label>
+            <input type="number" required class="form-control" name="valor_compra" id="valor_compra">
+        </div>
+        <div class="form-group">
+            <label for="valor_venda">Valor de venda do Produto</label>
+            <input type="number" required class="form-control" name="valor_venda" id="valor_venda">
+        </div>
+        <div class="form-group">
+            <label for="qtd_estoque">Quantidade do produto em estoque</label>
+            <input type="number" required class="form-control" name="qtd_estoque" id="qtd_estoque">
+        </div>
+        <div class="form-group">
+            <label for="qtd_minima">Quantidade mínima para se ter do produto</label>
+            <input type="number" required class="form-control" name="qtd_minima" id="qtd_minima">
+        </div>
+        <div class="form-group">
+            <input type="checkbox" id="ativo" name="ativo"
+                   checked>
+            <label for="ativo">Ativo</label>
+          </div>
+        <div class="mx-auto" style="width: 200px;">
+            <button type="submit" class="btn btn-primary btn-lg">Confirmar</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

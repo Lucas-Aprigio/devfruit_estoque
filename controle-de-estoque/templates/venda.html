@@ -1,0 +1,53 @@
+
+{% extends "template.html" %}
+{% block title %}Venda de Produtos{% endblock %}
+{% block h1 %}Venda de Produtos{% endblock %}
+
+{% block conteudo%}
+<div class="container" style="border-style: solid; border-color: #dee2e6; margin-top: -0.3%; padding-top: 1%; padding-bottom: 1%;">
+
+    <div class="form-group">
+        <label for="produto_vendido">PRODUTO</label>
+        <input class="form-control" list="produtos" name="produto_vendido" id="produto_vendido" required>
+        <datalist id="produtos">
+            {% for produto in produtos %}
+                <option value="{{ produto.nome }}">
+            {% endfor %}
+        </datalist>
+    </div>
+
+    <div class="form-group">
+        <label for="quantidade">QUANTIDADE VENDIDA</label>
+        <input class="form-control" type="number" name="quantidade_vendida" id="quantidade_vendida" required>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary" onclick="adicionarItem(produto_vendido.value, quantidade_vendida.value)">Adicionar Item</button>
+    </div>
+</div>
+
+<div class="container" id="tabela-itens">
+    <table class="table table-bordered table-striped" style="margin-top: 50px;">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Produto</th>
+                <th scope="col">Quantidade Vendida</th>
+                <th scope="col">Retirar</th>
+            </tr>
+        </thead>
+        <tbody id="lista-itens">
+
+        </tbody>
+    </table>
+</div> 
+
+<div class="container">
+    <form name="form" action="{{ url_for('finalizar_venda') }}" method="POST" id="form-itens" enctype="multipart/form-data">
+        <input type="hidden" name="ultimo_item" id="ultimo_item" value="0">
+        <input type="hidden" name="lista_de_itens" id="lista_de_itens">
+        <button type="submit" class="btn btn-lg btn-danger" style="margin-left: 0;">Confirmar Venda</button>        
+    </form>
+</div>
+<script src="{{ url_for('static', filename='venda.js') }}"></script>
+
+{% endblock %}
